@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HD WELFARE | 임직원 복리후생 통합 안내 포털</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{--navy:#102d50;--blue:#1769aa;--sky:#eaf3fb;--pale:#f4f7fb;--ink:#182b40;--muted:#718096;--line:#dce5ee;--accent:#00a6a6;--white:#fff;--shadow:0 18px 48px #102d5014}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:'Nanum Gothic',sans-serif;color:var(--ink);background:#fff;line-height:1.65}a{color:inherit;text-decoration:none}button,input,textarea,select{font:inherit}button{cursor:pointer;border:0}.wrap{max-width:1160px;margin:auto;padding:0 24px}
+header{height:76px;display:flex;align-items:center;justify-content:space-between;background:#fff;position:sticky;top:0;z-index:20;border-bottom:1px solid #e8eef4}.brand{font-weight:800;color:var(--navy);font-size:19px;letter-spacing:.04em}.brand span{color:var(--accent)}nav{display:flex;gap:26px;font-size:13px;font-weight:700;color:#4b6075}.navright{display:flex;gap:9px;align-items:center}.btn{padding:11px 17px;border-radius:7px;font-weight:700;font-size:13px}.primary{background:var(--blue);color:white}.outline{border:1px solid var(--line);background:white;color:var(--navy)}.hero{position:relative;overflow:hidden;color:#fff;background:linear-gradient(115deg,#102d50 0%,#14558a 58%,#087d91 100%);min-height:520px;display:flex;align-items:center}.hero:before,.hero:after{content:"";position:absolute;border:1px solid #ffffff24;border-radius:50%;width:600px;height:600px;right:-80px;top:-210px;animation:float 14s ease-in-out infinite}.hero:after{width:780px;height:780px;right:-160px;top:-300px;animation-duration:20s}@keyframes float{50%{transform:translate(-35px,28px) scale(1.06)}}.orb{position:absolute;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,#ffffff25,transparent 68%);right:18%;bottom:-120px;animation:pulse 7s ease-in-out infinite}@keyframes pulse{50%{transform:scale(1.5);opacity:.45}}.hero-content{position:relative;z-index:2;padding:82px 0;max-width:720px}.eyebrow{font-size:12px;letter-spacing:.2em;font-weight:800;color:#8de1e1}.hero h1{font-size:clamp(36px,5vw,58px);line-height:1.22;letter-spacing:-.055em;margin:18px 0}.hero p{font-size:16px;color:#dceaf6;max-width:610px}.hero-actions{display:flex;gap:12px;margin-top:30px}.hero .primary{background:var(--accent)}.hero .outline{background:#ffffff12;border-color:#ffffff66;color:white}.hero-note{font-size:11px;color:#c3d6e8;margin-top:24px}
+.section{padding:76px 0}.section.alt{background:var(--pale)}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:28px}.kicker{font-size:11px;letter-spacing:.16em;color:var(--blue);font-weight:800}.section h2{font-size:30px;letter-spacing:-.04em;margin:7px 0}.sub{color:var(--muted);font-size:14px}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.tile{background:#fff;border:1px solid var(--line);border-radius:12px;padding:24px;box-shadow:0 5px 20px #102d5008;transition:.2s}.tile:hover{transform:translateY(-4px);box-shadow:var(--shadow)}.tile .ico{width:44px;height:44px;border-radius:10px;background:var(--sky);display:grid;place-items:center;color:var(--blue);font-size:21px;margin-bottom:18px}.tile h3{margin:0 0 8px;font-size:17px}.tile p{font-size:13px;color:var(--muted);margin:0}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.step{padding:25px;border-left:3px solid var(--accent);background:#fff;border-radius:0 10px 10px 0}.step b{font-size:12px;color:var(--blue);letter-spacing:.12em}.step h3{margin:8px 0}.step p{font-size:13px;color:var(--muted);margin:0}
+.board-area{display:grid;grid-template-columns:220px 1fr;gap:24px}.side{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;height:max-content}.side button{width:100%;text-align:left;padding:13px;border-radius:7px;background:transparent;color:#53677c;font-weight:700}.side button.active{background:var(--sky);color:var(--blue)}.board{background:white;border:1px solid var(--line);border-radius:12px;padding:22px;min-height:310px}.board-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap}.board-top h3{margin:0}.board-list{display:grid;gap:10px}.post{border:1px solid var(--line);padding:15px;border-radius:8px;display:flex;justify-content:space-between;gap:16px;align-items:center;cursor:pointer;transition:.15s}.post:hover{border-color:var(--blue);background:var(--pale)}.post strong{font-size:14px}.post small{color:var(--muted);font-size:11px}.tag{font-size:10px;padding:4px 8px;border-radius:20px;background:var(--sky);color:var(--blue);font-weight:700}.empty{padding:48px 15px;text-align:center;color:var(--muted);font-size:13px}
+.auth{background:var(--navy);color:white;padding:54px 0}.auth-inner{display:flex;justify-content:space-between;align-items:center;gap:30px}.auth h2{font-size:27px;margin:0 0 8px}.auth p{color:#c5d6e7;margin:0;font-size:13px}.auth-box{background:white;color:var(--ink);border-radius:12px;padding:18px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}.auth-box input{border:1px solid var(--line);border-radius:6px;padding:11px 12px;width:180px;font-size:12px}.auth-box .btn{padding:12px 15px}
+footer{padding:28px 0;color:#8090a0;font-size:11px;border-top:1px solid var(--line)}.modal{position:fixed;inset:0;background:#0c2039a8;display:none;align-items:center;justify-content:center;z-index:40;padding:20px}.modal.show{display:flex}.dialog{background:white;border-radius:14px;padding:25px;width:min(560px,100%);box-shadow:var(--shadow);max-height:86vh;overflow:auto}.dialog h3{margin:0 0 16px}.field{display:grid;gap:6px;margin:12px 0}.field label{font-size:12px;font-weight:700}.field input,.field textarea,.field select{border:1px solid var(--line);border-radius:7px;padding:11px;width:100%}.field textarea{min-height:130px;resize:vertical}.dialog-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}.status{font-size:12px;color:var(--accent);min-height:18px;margin-top:8px}
+.connbanner{display:none;background:#fdf0f0;color:#b3342f;border-bottom:1px solid #f2d4d2;font-size:12px;font-weight:700;padding:10px 0}.connbanner.show{display:block}.connbanner span{font-weight:400;color:#8f5653}
+.searchbox{border:1px solid var(--line);border-radius:7px;padding:9px 12px;font-size:12px;width:190px;background:var(--pale)}
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}.chip{font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;border:1px solid var(--line);background:#fff;color:#53677c}.chip.active{background:var(--blue);border-color:var(--blue);color:#fff}
+.faqitem{border:1px solid var(--line);border-radius:8px;padding:15px;display:flex;gap:12px;align-items:center;cursor:pointer;transition:.15s}.faqitem:hover{border-color:var(--accent);background:var(--pale)}.faqitem .q{font-weight:800;color:var(--accent);font-size:15px}.detail-body{white-space:pre-wrap;font-size:14px;color:#33475c;margin:6px 0 0}.detail-meta{font-size:11px;color:var(--muted);margin-bottom:10px}
+@media(max-width:850px){nav{display:none}.cards{grid-template-columns:repeat(2,1fr)}.board-area{grid-template-columns:1fr}.side{display:grid;grid-template-columns:repeat(2,1fr)}.auth-inner{display:block}.auth-box{margin-top:22px}.hero{min-height:480px}}
+@media(max-width:520px){.cards,.steps{grid-template-columns:1fr}.hero-actions{flex-wrap:wrap}.auth-box input{width:100%}.section{padding:54px 0}.post,.faqitem{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="connbanner" id="connBanner"><div class="wrap">⚠ Supabase에 연결하지 못했습니다. <span id="connBannerMsg"></span> — 게시판·FAQ 데이터는 실제 연결 후 표시됩니다.</div></div>
+<header><div class="wrap" style="display:flex;align-items:center;justify-content:space-between;width:100%"><a class="brand" href="#">HD <span>WELFARE</span></a><nav><a href="#about">복리후생 소개</a><a href="#boards">프로그램·소통</a><a href="#join">이용 안내</a><a href="#boards" data-goto="faq">FAQ</a></nav><div class="navright"><span id="userLabel" style="font-size:12px;color:#718096"></span><button class="btn outline" id="logoutBtn" style="display:none">로그아웃</button><a class="btn primary" href="#join">이용 시작하기</a></div></div></header>
+<section class="hero"><div class="orb"></div><div class="wrap"><div class="hero-content"><div class="eyebrow">HD WELFARE LOUNGE · EMPLOYEE BENEFITS</div><h1>일하는 삶을 더 풍요롭게,<br>복리후생의 모든 것을 한곳에서.</h1><p>임직원 복지포인트·건강검진·식대·교통·교육·휴가 지원 등 복리후생 프로그램의 안내와 신청 방법을 한곳에서 확인하고, 궁금한 점은 언제든 물어보세요.</p><div class="hero-actions"><a class="btn primary" href="#boards">복지 프로그램 보기　↗</a><a class="btn outline" href="#join">이용 방법 안내</a></div><div class="hero-note">HD WELFARE LOUNGE · 임직원 전용 복리후생 안내 포털</div></div></div></section>
+<section class="section" id="about"><div class="wrap"><div class="section-head"><div><div class="kicker">WELFARE SPACE</div><h2>복리후생의 모든 서비스를 한곳에</h2><div class="sub">공지 안내부터 문의, 자료 다운로드, FAQ까지 목적에 맞는 메뉴로 운영합니다.</div></div></div><div class="cards">
+<div class="tile"><div class="ico">▤</div><h3>공지사항</h3><p>복지포인트 지급 일정, 건강검진 시즌 등 주요 복리후생 안내를 확인하세요.</p></div>
+<div class="tile"><div class="ico">✎</div><h3>문의·건의 게시판</h3><p>복지 프로그램에 대한 질문과 개선 건의를 자유롭게 남겨주세요.</p></div>
+<div class="tile"><div class="ico">▣</div><h3>복지 자료실</h3><p>신청서 양식, 프로그램 안내서 등 복리후생 서식을 내려받으세요.</p></div>
+<div class="tile"><div class="ico">▧</div><h3>FAQ</h3><p>임직원이 가장 많이 묻는 복지 질문과 답변을 카테고리별로 모았습니다.</p></div></div></div></section>
+<section class="section alt" id="boards"><div class="wrap"><div class="section-head"><div><div class="kicker">PROGRAMS & SUPPORT</div><h2>복리후생 안내 게시판</h2><div class="sub">메뉴를 선택하면 해당 게시판의 글을 확인할 수 있습니다. 검색과 카테고리 필터를 사용해 보세요.</div></div><button class="btn primary" id="writeBtn">글 작성하기</button></div>
+<div class="board-area"><aside class="side"><button class="active" data-board="notice">▤　공지사항</button><button data-board="free">✎　문의·건의</button><button data-board="resource">▣　복지 자료실</button><button data-board="faq">▧　FAQ</button></aside><div class="board"><div class="board-top"><h3 id="boardTitle">공지사항</h3><input class="searchbox" id="boardSearch" placeholder="이 게시판에서 검색..."><span class="tag" id="boardCount">0 POSTS</span></div><div id="faqChips" class="chips" style="display:none"></div><div id="postList" class="board-list"><div class="empty">게시글을 불러오는 중입니다.</div></div><div id="boardStatus" class="status"></div></div></div></div></section>
+<section class="section" id="join"><div class="wrap"><div class="section-head"><div><div class="kicker">HOW TO USE</div><h2>복리후생 포털 이용은 간단합니다</h2><div class="sub">사내 이메일 계정으로 가입하면 전체 서비스를 바로 이용할 수 있습니다.</div></div></div><div class="steps"><div class="step"><b>STEP 01</b><h3>회원가입</h3><p>사내 이메일과 비밀번호, 이름을 입력해 계정을 생성합니다.</p></div><div class="step"><b>STEP 02</b><h3>이메일 인증 및 로그인</h3><p>가입 확인 메일의 안내에 따라 인증 후 로그인합니다.</p></div><div class="step"><b>STEP 03</b><h3>프로그램 이용·신청</h3><p>공지를 확인하고, 양식을 내려받아 신청하며, 궁금한 점을 문의합니다.</p></div></div></div></section>
+<section class="auth"><div class="wrap auth-inner"><div><h2>오늘부터 나의 복리후생을 확인하세요.</h2><p>가입 후 공지·자료실·FAQ와 문의 게시판을 이용할 수 있습니다. 등록 권한은 인사팀 운영 정책에 따라 제한될 수 있습니다.</p></div><div class="auth-box"><input id="authName" placeholder="이름 (가입 시)"><input id="authEmail" type="email" placeholder="사내 이메일"><input id="authPassword" type="password" placeholder="비밀번호 (6자 이상)"><button class="btn primary" id="signupBtn">회원가입</button><button class="btn outline" id="loginBtn">로그인</button></div></div><div class="wrap"><div class="status" id="authStatus" style="color:#aee8e5"></div></div></section>
+<footer><div class="wrap">© HD WELFARE LOUNGE · 인사팀 복리후생 담당 <span style="float:right">Care · Support · Connect</span></div></footer>
+<div class="modal" id="writeModal"><div class="dialog"><h3 id="modalTitle">게시글 작성</h3><div class="field"><label>게시판</label><select id="postBoard"><option value="free">문의·건의 게시판</option><option value="notice">공지사항</option><option value="resource">복지 자료실</option><option value="faq">FAQ</option></select></div><div class="field" id="catField"><label>FAQ 카테고리</label><select id="postCat"><option>복지포인트</option><option>건강·의료</option><option>식대·교통</option><option>교육·자녀</option><option>휴가·휴직</option><option>여가·시설</option><option>기타</option></select></div><div class="field"><label>제목</label><input id="postTitle" maxlength="160" placeholder="제목을 입력하세요"></div><div class="field"><label id="bodyLabel">내용</label><textarea id="postBody" placeholder="내용을 입력하세요"></textarea></div><div class="field"><label>첨부 URL (선택)</label><input id="postUrl" placeholder="자료 또는 이미지 URL"></div><div class="dialog-actions"><button class="btn outline" id="cancelWrite">취소</button><button class="btn primary" id="savePost">등록하기</button></div><div class="status" id="writeStatus"></div></div></div>
+<div class="modal" id="viewModal"><div class="dialog"><div id="viewTagRow" style="margin-bottom:8px"></div><h3 id="viewTitle" style="margin-top:0"></h3><div class="detail-meta" id="viewMeta"></div><p class="detail-body" id="viewBody"></p><div id="viewAttach" style="margin-top:14px"></div><div class="dialog-actions"><button class="btn primary" id="closeView">닫기</button></div></div></div>
+<script>
+/* ===== Supabase 연결 정보 (프론트엔드용 Publishable 키만 사용) ===== */
+const SUPABASE_URL='https://plhmvqwthsachgcnwntj.supabase.co';
+const SUPABASE_ANON_KEY='sb_publishable_Aa6waLFEwtiC_4liqPJSfA_5_unAWAC';
+const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+const TABLES={notice:'prj_notices',free:'prj_free_posts',resource:'prj_resources',faq:'prj_faq'};
+const LABELS={notice:'공지사항',free:'문의·건의',resource:'복지 자료실',faq:'FAQ'};
+let currentBoard='notice',session=null,cache=[],faqFilter='전체',searchQ='';
+const $=id=>document.getElementById(id);
+function message(id,msg){$(id).textContent=msg}
+function escapeHtml(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function parseFaq(t){const m=/^\[(.+?)\]\s*/.exec(t||'');return m?{cat:m[1],title:t.slice(m[0].length)}:{cat:'기타',title:t||''}}
+function failBanner(msg){$('connBanner').classList.add('show');$('connBannerMsg').textContent=msg}
+function boardSwitch(key){currentBoard=key;faqFilter='전체';searchQ='';$('boardSearch').value='';document.querySelectorAll('[data-board]').forEach(b=>b.classList.toggle('active',b.dataset.board===key));$('boardTitle').textContent=LABELS[key];$('postBoard').value=key;$('faqChips').style.display=key==='faq'?'flex':'none';loadPosts()}
+async function loadPosts(){
+  $('postList').innerHTML='<div class="empty">불러오는 중...</div>';message('boardStatus','');
+  const {data,error}=await db.from(TABLES[currentBoard]).select('id,title,body,attachment_url,created_at').order('created_at',{ascending:false}).limit(60);
+  if(error){
+    /* 연결 실패: 실제 오류를 그대로 표시 (가짜 데이터로 대체하지 않음) */
+    $('postList').innerHTML='<div class="empty">데이터를 불러오지 못했습니다.<br>Supabase 연결 상태와 테이블('+TABLES[currentBoard]+') 생성 여부를 확인해 주세요.</div>';
+    message('boardStatus','오류: '+error.message);failBanner(error.message);cache=[];renderList();return;
+  }
+  cache=data||[];renderList();
+}
+function renderList(){
+  let rows=cache.slice();
+  if(searchQ){const q=searchQ.toLowerCase();rows=rows.filter(p=>((p.title||'')+' '+(p.body||'')).toLowerCase().includes(q))}
+  if(currentBoard==='faq'){
+    const cats=['전체',...new Set(rows.map(p=>parseFaq(p.title).cat))];
+    $('faqChips').innerHTML=cats.map(c=>`<button class="chip ${c===faqFilter?'active':''}" data-cat="${escapeHtml(c)}">${escapeHtml(c)}</button>`).join('');
+    $('faqChips').querySelectorAll('.chip').forEach(ch=>ch.onclick=()=>{faqFilter=ch.dataset.cat;renderList()});
+    if(faqFilter!=='전체')rows=rows.filter(p=>parseFaq(p.title).cat===faqFilter);
+  }
+  $('boardCount').textContent=rows.length+' POSTS';
+  if(!rows.length){$('postList').innerHTML='<div class="empty">'+(searchQ||faqFilter!=='전체'?'조건에 맞는 글이 없습니다.':'아직 등록된 글이 없습니다.')+'</div>';return}
+  if(currentBoard==='faq'){
+    $('postList').innerHTML=rows.map(p=>{const f=parseFaq(p.title);return `<article class="faqitem" data-id="${p.id}"><span class="q">Q</span><div><span class="tag">${escapeHtml(f.cat)}</span><div><strong>${escapeHtml(f.title)}</strong><br><small>${new Date(p.created_at).toLocaleDateString('ko-KR')} · 클릭하면 답변을 볼 수 있습니다</small></div></div></article>`}).join('');
+  }else{
+    $('postList').innerHTML=rows.map(p=>`<article class="post" data-id="${p.id}"><div><strong>${escapeHtml(p.title)}</strong><br><small>${new Date(p.created_at).toLocaleDateString('ko-KR')} · ${escapeHtml((p.body||'').slice(0,72))}</small></div><div>${p.attachment_url?`<span class="tag">첨부 있음 ↗</span>`:''}</div></article>`).join('');
+  }
+  document.querySelectorAll('#postList [data-id]').forEach(el=>el.onclick=()=>openDetail(el.dataset.id));
+}
+function openDetail(id){
+  const p=cache.find(x=>String(x.id)===String(id));if(!p)return;
+  const f=currentBoard==='faq'?parseFaq(p.title):{cat:null,title:p.title};
+  $('viewTagRow').innerHTML=f.cat?`<span class="tag">${escapeHtml(f.cat)}</span>`:'';
+  $('viewTitle').textContent=f.title;
+  $('viewMeta').textContent=new Date(p.created_at).toLocaleString('ko-KR')+' · '+LABELS[currentBoard];
+  $('viewBody').textContent=p.body||'';
+  $('viewAttach').innerHTML=p.attachment_url?`<a class="btn outline" target="_blank" rel="noopener" href="${escapeHtml(p.attachment_url)}">첨부 열기 ↗</a>`:'';
+  $('viewModal').classList.add('show');
+}
+$('closeView').onclick=()=>$('viewModal').classList.remove('show');
+$('boardSearch').oninput=e=>{searchQ=e.target.value.trim();renderList()};
+async function refreshAuth(){const {data}=await db.auth.getSession();session=data.session;$('userLabel').textContent=session?(session.user.email||'로그인됨'):'';$('logoutBtn').style.display=session?'inline-block':'none';$('writeBtn').textContent=session?'글 작성하기':'로그인 후 글 작성';}
+$('signupBtn').onclick=async()=>{const email=$('authEmail').value.trim(),password=$('authPassword').value,name=$('authName').value.trim();if(!name||!email||password.length<6){message('authStatus','이름, 이메일, 6자 이상의 비밀번호를 입력해 주세요.');return}try{const {error}=await db.auth.signUp({email,password,options:{data:{full_name:name}}});message('authStatus',error?error.message:'가입 요청이 완료되었습니다. 이메일 인증 후 로그인해 주세요.')}catch(e){message('authStatus','네트워크 오류로 가입 요청을 보낼 수 없습니다: '+e.message)}};
+$('loginBtn').onclick=async()=>{try{const {error}=await db.auth.signInWithPassword({email:$('authEmail').value.trim(),password:$('authPassword').value});message('authStatus',error?error.message:'로그인되었습니다.');if(!error){await refreshAuth();loadPosts()}}catch(e){message('authStatus','네트워크 오류로 로그인할 수 없습니다: '+e.message)}};
+$('logoutBtn').onclick=async()=>{await db.auth.signOut();await refreshAuth();message('authStatus','로그아웃되었습니다.')};
+$('writeBtn').onclick=()=>{if(!session){message('authStatus','글 작성은 로그인 후 이용할 수 있습니다.');$('authEmail').focus();location.hash='#join';return}$('modalTitle').textContent=currentBoard==='faq'?'FAQ 등록':'게시글 작성';$('bodyLabel').textContent=currentBoard==='faq'?'답변 (body)':'내용';$('catField').style.display=currentBoard==='faq'?'grid':'none';$('writeModal').classList.add('show');$('postBoard').value=currentBoard};
+$('cancelWrite').onclick=()=>$('writeModal').classList.remove('show');
+$('savePost').onclick=async()=>{if(!session){message('writeStatus','로그인이 필요합니다.');return}const board=$('postBoard').value;let title=$('postTitle').value.trim();const body=$('postBody').value.trim(),url=$('postUrl').value.trim();if(board==='faq')title='['+$('postCat').value+'] '+title;if(!title){message('writeStatus','제목을 입력해 주세요.');return}try{const {error}=await db.from(TABLES[board]).insert({title,body,attachment_url:url||null,author_id:session.user.id});if(error){message('writeStatus','등록 실패: '+error.message);return}$('writeModal').classList.remove('show');$('postTitle').value='';$('postBody').value='';$('postUrl').value='';boardSwitch(board)}catch(e){message('writeStatus','네트워크 오류: '+e.message)}};
+document.querySelectorAll('[data-board]').forEach(b=>b.onclick=()=>boardSwitch(b.dataset.board));
+document.querySelectorAll('[data-goto]').forEach(a=>a.onclick=()=>boardSwitch(a.dataset.goto));
+db.auth.onAuthStateChange(async()=>{await refreshAuth()});
+refreshAuth();loadPosts();
+</script>
+</body></html>
